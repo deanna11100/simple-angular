@@ -18,9 +18,23 @@
   <!-- endbuild -->
 </head>
 <body ng-app="sampleApp">
+<h1>Hi there!</h1>
+  <form ng-controller="simpleController">
 
+    What games do you play?
+  <input ng-model="gameName" name="gameName">
+    {{gameName}}
+    <button ng-click="addGame()">Add
+    </button>
 
+    <ul>
+      <li ng-repeat="name in names">
+        {{name}}
+        <img src="{{name}}"  >
+      </li>
+    </ul>
 
+  </form>
 
 <!-- build:js(.tmp/serve,src,dist) scripts/vendor.js -->
 <!-- bower:js -->

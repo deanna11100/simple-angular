@@ -5,9 +5,13 @@
     .controller('simpleController', SimpleController);
 
 
-  function SimpleController(scope) {
-    angular.extend(scope, {
-      names: []
+  function SimpleController($scope) {
+    angular.extend($scope, {
+      names: ["Harry"],
+      gameName: "" ,
+      addGame: function(){
+          $scope.names.push($scope.gameName);
+      }
     });
   };
 
