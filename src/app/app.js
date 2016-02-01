@@ -1,19 +1,27 @@
 (function(angular) {
   'use strict';
 
-  angular.module('sampleApp', [])
+  angular.module('sampleApp', ["ngCookies"])
     .controller('simpleController', SimpleController);
 
 
-  function SimpleController($scope) {
+  function SimpleController($scope, $cookies) {
     angular.extend($scope, {
-      names: ["Fred","Lexy","Shadow"],
-      myName: "catsarecool"  ,
+      names: [],
+      myName: ""  ,
       addName: function(){
-        $scope.names.push($scope.myName)  ;
-        $scope.myName = "";
+        if($scope.myName.startsWith("https://") || $scope.myName.startsWith("http://")) {
+          $scope.names.push($scope.myName)  ;
+          $cookies.putObject("images", $scope.names);
+          $scope.myName = "";
+        }
       }
     });
+     var names = $cookies.getObject("images");
+    if(names) {
+      $scope.names = names ;
+    }
+
   };
 
 }(angular));
